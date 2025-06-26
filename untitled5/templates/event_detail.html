@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{ event.title }}</h1>
+            <p class="text-muted"><i class="bi bi-calendar-event"></i> {{ event.date.strftime('%d.%m.%Y %H:%M') }}</p>
+
+            <div class="mb-4">
+                <img src="{{ url_for('static', filename='img/' + event.image) }}" class="img-fluid rounded" alt="{{ event.title }}">
+            </div>
+
+            <h3>О спектакле</h3>
+            <p>{{ event.description }}</p>
+
+            <h3>Актёры</h3>
+            <p>В главных ролях: Иван Иванов, Мария Петрова, Сергей Сидоров</p>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title mb-0">Бронирование билетов</h4>
+                </div>
+                <div class="card-body">
+                    {% if current_user.is_authenticated %}
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form.seats.label(class="form-label") }}
+                            {{ form.seats(class="form-select") }}
+                        </div>
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                    </form>
+                    {% else %}
+                    <div class="alert alert-info">
+                        Для бронирования билетов необходимо <a href="{{ url_for('login') }}" class="alert-link">войти</a> или
+                        <a href="{{ url_for('register') }}" class="alert-link">зарегистрироваться</a>.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Информация</h5>
+                </div>
+                <div class="card-body">
+                    <p><i class="bi bi-clock"></i> Продолжительность: 2 часа 30 минут</p>
+                    <p><i class="bi bi-geo-alt"></i> Основная сцена</p>
+                    <p><i class="bi bi-cash"></i> Цена: от 1500 руб.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
