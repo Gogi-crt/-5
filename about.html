@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ООО "Плодородие Саратов" - О нашей компании</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+</head>
+<body>
+<!-- Header -->
+<header class="header sticky-top">
+    <!-- Top Bar -->
+    <div class="top-bar bg-success text-white py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-telephone me-2"></i>
+                        <span>+7 (8452) 123-456</span>
+                        <i class="bi bi-clock ms-3 me-2"></i>
+                        <span>Ежедневно 8:00-20:00</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex align-items-center justify-content-md-end">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        <span>г. Саратов, ул. Танкистов, 37</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <div class="d-flex align-items-center">
+                    <div class="logo-icon bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                        <i class="bi bi-flower1 text-white"></i>
+                    </div>
+                    <div>
+                        <span class="fw-bold text-success">Плодородие</span>
+                        <small class="d-block text-muted">Саратов</small>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Items -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-house me-1"></i>Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalog.html">
+                            <i class="bi bi-grid me-1"></i>Каталог
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">
+                            <i class="bi bi-info-circle me-1"></i>О нас
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="bi bi-telephone me-1"></i>Контакты
+                        </a>
+                    </li>
+                </ul>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-gear me-1"></i>Администратор <!-- Изменена иконка и текст -->
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="admin.html"><i class="bi bi-gear me-2"></i>Админ-панель</a></li> <!-- Добавлено -->
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-right me-2"></i>Войти</a></li>
+                        <li><a class="dropdown-item" href="register.html"><i class="bi bi-person-plus me-2"></i>Регистрация</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Мой профиль</a></li>
+                        <li><a class="dropdown-item" href="orders.html"><i class="bi bi-bag me-2"></i>Мои заказы</a></li>
+                        <li><a class="dropdown-item" href="favorites.html"><i class="bi bi-heart me-2"></i>Избранное</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i>Выйти</a></li>
+                    </ul>
+                </li>
+
+                <!-- Search -->
+                <form class="d-flex ms-3" action="catalog.html" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Поиск товаров..." name="search">
+                        <button class="btn btn-success" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main class="main-content py-5">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <nav aria-label="breadcrumb" class="mb-3">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Главная</a></li>
+                        <li class="breadcrumb-item active">О нас</li>
+                    </ol>
+                </nav>
+                <h1 class="display-5 fw-bold text-success mb-3">О нашей компании</h1>
+                <p class="lead text-muted">Познакомьтесь с историей, ценностями и командой "Плодородие Саратов"</p>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6">
+                <img src="static/images/about-hero.jpg" alt="Наша ферма" class="img-fluid rounded shadow-lg"
+                     onerror="this.src='https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+            </div>
+            <div class="col-lg-6">
+                <div class="p-4">
+                    <h2 class="fw-bold mb-4">Наша история</h2>
+                    <p class="mb-3">Основанная в 2009 году, компания "Плодородие Саратов" начала свой путь как небольшое семейное фермерское хозяйство. С любовью к земле и уважением к традициям мы выращивали первые овощи на нескольких гектарах земли.</p>
+                    <p class="mb-3">Сегодня мы — одно из крупнейших сельскохозяйственных предприятий Саратовской области, объединяющее более 500 гектаров плодородных земель, современное оборудование и команду профессионалов.</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <div class="me-4">
+                            <h3 class="fw-bold text-success mb-0">15+</h3>
+                            <small class="text-muted">лет на рынке</small>
+                        </div>
+                        <div class="me-4">
+                            <h3 class="fw-bold text-success mb-0">500+</h3>
+                            <small class="text-muted">гектаров земли</small>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold text-success mb-0">50+</h3>
+                            <small class="text-muted">сотрудников</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission & Values -->
+        <div class="row mb-5">
+            <div class="col-12 text-center mb-4">
+                <h2 class="fw-bold mb-3">Наша миссия и ценности</h2>
+                <p class="text-muted mx-auto" style="max-width: 700px;">Мы стремимся обеспечивать жителей Саратова и области свежими, качественными и доступными фермерскими продуктами, сохраняя традиции и внедряя инновации.</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-heart-fill text-success fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Качество превыше всего</h5>
+                        <p class="text-muted">Мы тщательно контролируем каждый этап производства — от посадки семян до доставки свежих продуктов к вашему столу.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-tree-fill text-success fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Экологичность</h5>
+                        <p class="text-muted">Используем только натуральные удобрения, минимизируем использование химикатов и бережно относимся к окружающей среде.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-people-fill text-success fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Социальная ответственность</h5>
+                        <p class="text-muted">Поддерживаем местное сообщество, создаем рабочие места и участвуем в социальных программах Саратовской области.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Production Process -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card border-0 bg-light">
+                    <div class="card-body p-4">
+                        <h2 class="fw-bold text-center mb-4">Наш производственный процесс</h2>
+
+                        <div class="row text-center">
+                            <div class="col-md-3 mb-3">
+                                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 50px; height: 50px;">1</div>
+                                <h5 class="fw-bold">Подготовка почвы</h5>
+                                <p class="text-muted small">Тщательная подготовка и обогащение почвы натуральными удобрениями</p>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 50px; height: 50px;">2</div>
+                                <h5 class="fw-bold">Выращивание</h5>
+                                <p class="text-muted small">Использование качественных семян и современных агротехнологий</p>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 50px; height: 50px;">3</div>
+                                <h5 class="fw-bold">Сбор урожая</h5>
+                                <p class="text-muted small">Аккуратный ручной сбор в оптимальное время созревания</p>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 50px; height: 50px;">4</div>
+                                <h5 class="fw-bold">Доставка</h5>
+                                <p class="text-muted small">Быстрая доставка свежих продуктов с сохранением качества</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="row mb-5">
+            <div class="col-12 text-center mb-4">
+                <h2 class="fw-bold mb-3">Наша команда</h2>
+                <p class="text-muted mx-auto" style="max-width: 700px;">Профессионалы с многолетним опытом, которые с любовью относятся к своему делу.</p>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 text-center">
+                    <div class="card-body p-4">
+                        <img src="static/images/team/team1.jpg" alt="Основатель" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;"
+                             onerror="this.src='https://ui-avatars.com/api/?name=Иван+Петров&background=28a745&color=fff&size=150'">
+                        <h5 class="fw-bold mb-1">Иван Петров</h5>
+                        <p class="text-success mb-2">Основатель и директор</p>
+                        <p class="text-muted small">Более 20 лет опыта в сельском хозяйстве. Основал компанию с нуля и продолжает развивать ее каждый день.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 text-center">
+                    <div class="card-body p-4">
+                        <img src="static/images/team/team2.jpg" alt="Агроном" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;"
+                             onerror="this.src='https://ui-avatars.com/api/?name=Мария+Иванова&background=28a745&color=fff&size=150'">
+                        <h5 class="fw-bold mb-1">Мария Иванова</h5>
+                        <p class="text-success mb-2">Главный агроном</p>
+                        <p class="text-muted small">Дипломированный специалист с 15-летним опытом. Отвечает за качество нашей продукции на всех этапах.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 text-center">
+                    <div class="card-body p-4">
+                        <img src="static/images/team/team3.jpg" alt="Логист" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;"
+                             onerror="this.src='https://ui-avatars.com/api/?name=Алексей+Сидоров&background=28a745&color=fff&size=150'">
+                        <h5 class="fw-bold mb-1">Алексей Сидоров</h5>
+                        <p class="text-success mb-2">Руководитель логистики</p>
+                        <p class="text-muted small">Обеспечивает быструю и надежную доставку наших продуктов клиентам в любой точке города.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificates & Awards -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h2 class="fw-bold text-center mb-4">Наши достижения и сертификаты</h2>
+
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Сертификат соответствия ГОСТ Р</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Диплом "Лучший фермерский производитель 2023"</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Знак качества Саратовской области</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Сертификат экологической безопасности</li>
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i> Участник программы "Натуральные продукты России"</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <div class="certificate-preview bg-light p-3 rounded">
+                                    <i class="bi bi-award-fill text-warning display-1"></i>
+                                    <p class="mt-2 fw-bold">Сертификат качества</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="logo-icon bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                        <i class="bi bi-flower1 text-white"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0">Плодородие Саратов</h5>
+                </div>
+                <p class="text-light">Свежие фермерские продукты напрямую от производителя. Качество, которое вы можете доверять.</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-vimeo"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Навигация</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Главная</a></li>
+                    <li class="mb-2"><a href="catalog.html" class="text-light text-decoration-none">Каталог</a></li>
+                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">О нас</a></li>
+                    <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Контакты</a></li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Категории</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="catalog.html?category=Овощи" class="text-light text-decoration-none">Овощи</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Фрукты" class="text-light text-decoration-none">Фрукты</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Ягоды" class="text-light text-decoration-none">Ягоды</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Молочные продукты" class="text-light text-decoration-none">Молочные продукты</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Контакты</h6>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-geo-alt text-success me-2"></i>
+                    <span>г. Саратов, ул. Танкистов, 37</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-telephone text-success me-2"></i>
+                    <span>+7 (8452) 123-456</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-envelope text-success me-2"></i>
+                    <span>info@plodorodie-saratov.ru</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock text-success me-2"></i>
+                    <span>Ежедневно 8:00-20:00</span>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="newsletter">
+                    <h6 class="fw-bold mb-2">Рассылка</h6>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Ваш email">
+                        <button class="btn btn-success" type="button">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="bg-light my-4">
+
+        <!-- Copyright -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="mb-0">&copy; 2009-2026 ООО "Плодородие Саратов". Все права защищены.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="payment-methods">
+                    <span class="text-muted me-2">Принимаем к оплате:</span>
+                    <i class="bi bi-credit-card-2-front me-2"></i>
+                    <i class="bi bi-paypal me-2"></i>
+                    <i class="bi bi-cash-coin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="static/js/script.js"></script>
+</body>
+</html>

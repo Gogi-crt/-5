@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свежие органические помидоры - Купить с доставкой | Плодородие Саратов</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+
+    <style>
+        .product-gallery { border-radius: 8px; overflow: hidden; }
+        .main-image { height: 400px; object-fit: cover; cursor: zoom-in; }
+        .thumbnails { display: flex; gap: 10px; margin-top: 15px; }
+        .thumbnail { width: 80px; height: 80px; object-fit: cover; border: 2px solid transparent; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; }
+        .thumbnail:hover, .thumbnail.active { border-color: #28a745; }
+        .product-info { background: white; border-radius: 8px; padding: 2rem; }
+        .quantity-selector { display: flex; align-items: center; gap: 10px; }
+        .quantity-btn { width: 40px; height: 40px; border: 1px solid #dee2e6; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
+        .quantity-btn:hover { background: #f8f9fa; border-color: #28a745; }
+        .quantity-input { width: 70px; text-align: center; border: 1px solid #dee2e6; border-radius: 8px; padding: 0.5rem; }
+        .feature-list li { margin-bottom: 0.5rem; display: flex; align-items: center; }
+        .feature-list i { color: #28a745; margin-right: 0.5rem; }
+        .review-card { border-left: 4px solid #28a745; background-color: white; border: 1px solid #dee2e6; }
+        .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); display: none; align-items: center; justify-content: center; z-index: 1060; }
+        .zoom-image { max-width: 90%; max-height: 90%; border-radius: 8px; }
+        .card { background-color: white; border: 1px solid #dee2e6; }
+        .card-body { color: #212529; }
+        .card-header { background-color: #f8f9fa !important; border-bottom: 1px solid #dee2e6; }
+        .form-control { background-color: white !important; border: 1px solid #ced4da; color: #212529 !important; }
+        .form-control:focus { background-color: white !important; border-color: #28a745; box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); color: #212529 !important; }
+        .form-label { color: #212529; font-weight: 500; }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header sticky-top">
+    <!-- Top Bar -->
+    <div class="top-bar bg-success text-white py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-telephone me-2"></i>
+                        <span>+7 (8452) 123-456</span>
+                        <i class="bi bi-clock ms-3 me-2"></i>
+                        <span>Ежедневно 8:00-20:00</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex align-items-center justify-content-md-end">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        <span>г. Саратов, ул. Танкистов, 37</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <div class="d-flex align-items-center">
+                    <div class="logo-icon bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                        <i class="bi bi-flower1 text-white"></i>
+                    </div>
+                    <div>
+                        <span class="fw-bold text-success">Плодородие</span>
+                        <small class="d-block text-muted">Саратов</small>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Items -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-house me-1"></i>Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalog.html">
+                            <i class="bi bi-grid me-1"></i>Каталог
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            <i class="bi bi-info-circle me-1"></i>О нас
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="bi bi-telephone me-1"></i>Контакты
+                        </a>
+                    </li>
+                </ul>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-gear me-1"></i>Администратор <!-- Изменена иконка и текст -->
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="admin.html"><i class="bi bi-gear me-2"></i>Админ-панель</a></li> <!-- Добавлено -->
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-right me-2"></i>Войти</a></li>
+                        <li><a class="dropdown-item" href="register.html"><i class="bi bi-person-plus me-2"></i>Регистрация</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Мой профиль</a></li>
+                        <li><a class="dropdown-item" href="orders.html"><i class="bi bi-bag me-2"></i>Мои заказы</a></li>
+                        <li><a class="dropdown-item" href="favorites.html"><i class="bi bi-heart me-2"></i>Избранное</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i>Выйти</a></li>
+                    </ul>
+                </li>
+
+                <!-- Search -->
+                <form class="d-flex ms-3" action="catalog.html" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Поиск товаров..." name="search">
+                        <button class="btn btn-success" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Flash Messages -->
+    <div class="container mt-3" id="flash-messages"></div>
+
+    <!-- Breadcrumb -->
+    <section class="bg-light py-3">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="catalog.html" class="text-decoration-none">Каталог</a></li>
+                    <li class="breadcrumb-item"><a href="catalog.html?category=Овощи" class="text-decoration-none">Овощи</a></li>
+                    <li class="breadcrumb-item active">Свежие органические помидоры</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Product Gallery -->
+                <div class="col-lg-6">
+                    <div class="product-gallery">
+                        <div class="main-image-container">
+                            <img src="/static/images/products/tomatoes.jpg"
+                                 alt="Свежие органические помидоры"
+                                 class="main-image w-100 rounded-3 shadow"
+                                 id="mainImage">
+                        </div>
+                        <div class="thumbnails">
+                            <img src="/static/images/products/tomatoes.jpg"
+                                 alt="Свежие органические помидоры"
+                                 class="thumbnail active"
+                                 data-image="/static/images/products/tomatoes.jpg">
+                            <img src="/static/images/products/tomatoes-1.jpg"
+                                 alt="Помидоры 1"
+                                 class="thumbnail"
+                                 onerror="this.style.display='none'">
+                            <img src="/static/images/products/tomatoes-2.jpg"
+                                 alt="Помидоры 2"
+                                 class="thumbnail"
+                                 onerror="this.style.display='none'">
+                            <img src="/static/images/products/tomatoes-3.jpg"
+                                 alt="Помидоры 3"
+                                 class="thumbnail"
+                                 onerror="this.style.display='none'">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="col-lg-6">
+                    <div class="product-info shadow-sm">
+                        <!-- Category & Brand -->
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge bg-success">Овощи</span>
+                            <button class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+
+                        <!-- Title -->
+                        <h1 class="h2 fw-bold mb-3">Свежие органические помидоры</h1>
+
+                        <!-- Rating -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rating-stars me-2">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-half text-warning"></i>
+                            </div>
+                            <span class="text-muted me-3">4.5 (24 отзыва)</span>
+                            <span class="badge bg-success">
+                                <i class="bi bi-check-circle me-1"></i>В наличии
+                            </span>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center">
+                                <span class="price-tag display-6 fw-bold me-3">299 ₽</span>
+                                <span class="badge bg-warning">Осталось мало!</span>
+                            </div>
+                            <small class="text-muted">за 1 кг</small>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <h5 class="fw-bold mb-3">Описание</h5>
+                            <p class="text-muted">Свежие органические помидоры, выращенные в экологически чистых условиях без использования химических удобрений и пестицидов. Идеально подходят для салатов, соусов и консервации.</p>
+                        </div>
+
+                        <!-- Features -->
+                        <div class="mb-4">
+                            <h5 class="fw-bold mb-3">Характеристики</h5>
+                            <ul class="feature-list list-unstyled">
+                                <li><i class="bi bi-check-circle-fill"></i> Свежий продукт с фермы</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Без химических удобрений</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Натуральный вкус и аромат</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Без ГМО и консервантов</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Собственное производство</li>
+                            </ul>
+                        </div>
+
+                        <!-- Add to Cart -->
+                        <div class="card border-0 bg-light">
+                            <div class="card-body">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label class="form-label fw-bold mb-0">Количество:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="quantity-selector">
+                                            <button class="quantity-btn" onclick="decreaseQuantity()">
+                                                <i class="bi bi-dash"></i>
+                                            </button>
+                                            <input type="number"
+                                                   id="quantity"
+                                                   name="quantity"
+                                                   class="quantity-input"
+                                                   value="1"
+                                                   min="1"
+                                                   max="15">
+                                            <button class="quantity-btn" onclick="increaseQuantity()">
+                                                <i class="bi bi-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <small class="text-muted">Доступно: 15 шт.</small>
+                                    </div>
+                                </div>
+
+                                <div class="row g-2 mt-3">
+                                    <div class="col">
+                                        <button type="button" class="btn btn-success btn-lg w-100 py-3" onclick="addToCart()">
+                                            <i class="bi bi-cart-plus me-2"></i>Добавить в корзину
+                                        </button>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="btn btn-outline-secondary btn-lg py-3 px-4">
+                                            <i class="bi bi-heart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Info -->
+                                <div class="row g-3 mt-4 text-center">
+                                    <div class="col-4">
+                                        <div class="d-flex flex-column">
+                                            <i class="bi bi-truck text-success fs-4 mb-1"></i>
+                                            <small class="text-muted">Бесплатная доставка</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex flex-column">
+                                            <i class="bi bi-arrow-repeat text-success fs-4 mb-1"></i>
+                                            <small class="text-muted">Легкий возврат</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex flex-column">
+                                            <i class="bi bi-shield-check text-success fs-4 mb-1"></i>
+                                            <small class="text-muted">Гарантия качества</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Tabs -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-header bg-white border-0">
+                            <ul class="nav nav-tabs nav-justified card-header-tabs" id="productTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab">
+                                        <i class="bi bi-info-circle me-2"></i>Подробности
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab">
+                                        <i class="bi bi-list-check me-2"></i>Характеристики
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">
+                                        <i class="bi bi-chat-dots me-2"></i>Отзывы (24)
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="productTabsContent">
+                                <!-- Details Tab -->
+                                <div class="tab-pane fade show active" id="details" role="tabpanel">
+                                    <h5 class="fw-bold mb-4">О продукте</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p>Свежие органические помидоры, выращенные в экологически чистых условиях без использования химических удобрений и пестицидов. Идеально подходят для салатов, соусов и консервации.</p>
+                                            <p>Наши помидоры выращиваются в экологически чистых условиях Саратовской области. Мы используем только натуральные удобрения и современные технологии выращивания, что позволяет нам получать богатый урожай без использования химикатов.</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card border-0 bg-success text-white">
+                                                <div class="card-body">
+                                                    <h6 class="fw-bold mb-3">
+                                                        <i class="bi bi-award me-2"></i>Почему выбирают нас?
+                                                    </h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li class="mb-2"><i class="bi bi-check-circle me-2"></i> Прямые поставки с фермы</li>
+                                                        <li class="mb-2"><i class="bi bi-check-circle me-2"></i> Ежедневный сбор урожая</li>
+                                                        <li class="mb-2"><i class="bi bi-check-circle me-2"></i> Строгий контроль качества</li>
+                                                        <li><i class="bi bi-check-circle me-2"></i> Быстрая доставка</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Specifications Tab -->
+                                <div class="tab-pane fade" id="specs" role="tabpanel">
+                                    <h5 class="fw-bold mb-4">Технические характеристики</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                            <tr>
+                                                <td class="fw-bold" style="width: 200px;">Категория</td>
+                                                <td>Овощи</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Вес</td>
+                                                <td>1 кг</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Срок годности</td>
+                                                <td>7-14 дней</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Условия хранения</td>
+                                                <td>При температуре +2°C до +8°C</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Страна происхождения</td>
+                                                <td>Россия</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Производитель</td>
+                                                <td>ООО "Плодородие Саратов"</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Reviews Tab -->
+                                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                    <h5 class="fw-bold mb-4">Отзывы покупателей</h5>
+
+                                    <!-- Review Summary -->
+                                    <div class="row mb-5">
+                                        <div class="col-md-4 text-center">
+                                            <div class="display-4 fw-bold text-success">4.5</div>
+                                            <div class="rating-stars mb-2">
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-half text-warning"></i>
+                                            </div>
+                                            <small class="text-muted">На основе 24 отзывов</small>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="row align-items-center mb-2">
+                                                <div class="col-2"><small>5 <i class="bi bi-star-fill text-warning"></i></small></div>
+                                                <div class="col-8"><div class="progress" style="height: 8px;"><div class="progress-bar bg-warning" style="width: 80%"></div></div></div>
+                                                <div class="col-2"><small class="text-muted">12</small></div>
+                                            </div>
+                                            <div class="row align-items-center mb-2">
+                                                <div class="col-2"><small>4 <i class="bi bi-star-fill text-warning"></i></small></div>
+                                                <div class="col-8"><div class="progress" style="height: 8px;"><div class="progress-bar bg-warning" style="width: 60%"></div></div></div>
+                                                <div class="col-2"><small class="text-muted">8</small></div>
+                                            </div>
+                                            <div class="row align-items-center mb-2">
+                                                <div class="col-2"><small>3 <i class="bi bi-star-fill text-warning"></i></small></div>
+                                                <div class="col-8"><div class="progress" style="height: 8px;"><div class="progress-bar bg-warning" style="width: 40%"></div></div></div>
+                                                <div class="col-2"><small class="text-muted">3</small></div>
+                                            </div>
+                                            <div class="row align-items-center mb-2">
+                                                <div class="col-2"><small>2 <i class="bi bi-star-fill text-warning"></i></small></div>
+                                                <div class="col-8"><div class="progress" style="height: 8px;"><div class="progress-bar bg-warning" style="width: 20%"></div></div></div>
+                                                <div class="col-2"><small class="text-muted">1</small></div>
+                                            </div>
+                                            <div class="row align-items-center mb-2">
+                                                <div class="col-2"><small>1 <i class="bi bi-star-fill text-warning"></i></small></div>
+                                                <div class="col-8"><div class="progress" style="height: 8px;"><div class="progress-bar bg-warning" style="width: 10%"></div></div></div>
+                                                <div class="col-2"><small class="text-muted">0</small></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Reviews List -->
+                                    <div class="reviews-list">
+                                        <div class="review-card card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <div>
+                                                        <h6 class="fw-bold mb-1">Иван Петров</h6>
+                                                        <div class="rating-stars small">
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                        </div>
+                                                    </div>
+                                                    <small class="text-muted">15.03.2024</small>
+                                                </div>
+                                                <p class="mb-0">Отличные помидоры! Очень свежие, ароматные. Покупаю уже второй раз, буду брать ещё.</p>
+                                            </div>
+                                        </div>
+                                        <div class="review-card card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <div>
+                                                        <h6 class="fw-bold mb-1">Мария Сидорова</h6>
+                                                        <div class="rating-stars small">
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star text-warning"></i>
+                                                        </div>
+                                                    </div>
+                                                    <small class="text-muted">12.03.2024</small>
+                                                </div>
+                                                <p class="mb-0">Вкусные помидоры, но некоторые были немного мягковаты. В целом довольна покупкой.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add Review Button -->
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                                            <i class="bi bi-pencil me-2"></i>Написать отзыв
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Similar Products -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <div>
+                    <h2 class="fw-bold">Похожие товары</h2>
+                    <p class="text-muted">Другие продукты из категории Овощи</p>
+                </div>
+                <a href="catalog.html?category=Овощи" class="btn btn-outline-success">
+                    Смотреть все <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card product-card h-100">
+                        <img src="/static/images/products/cucumbers.jpg"
+                             class="card-img-top product-image"
+                             alt="Свежие огурцы" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Свежие огурцы</h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                Хрустящие свежие огурцы с собственной фермы...
+                            </p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="price-tag">189 ₽</span>
+                                    <small class="text-muted">25 шт.</small>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <a href="product.html" class="btn btn-outline-success">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card product-card h-100">
+                        <img src="/static/images/products/carrots.jpg"
+                             class="card-img-top product-image"
+                             alt="Молодая морковь" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Молодая морковь</h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                Сладкая молодая морковь, богатая витаминами...
+                            </p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="price-tag">159 ₽</span>
+                                    <small class="text-muted">18 шт.</small>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <a href="product.html" class="btn btn-outline-success">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Zoom Overlay -->
+    <div class="zoom-overlay" id="zoomOverlay">
+        <img src="" alt="" class="zoom-image" id="zoomedImage">
+        <button class="btn btn-light position-absolute top-0 end-0 m-3" onclick="closeZoom()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Написать отзыв</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Оценка</label>
+                            <div class="rating-stars fs-4" id="reviewRating">
+                                <i class="bi bi-star" data-rating="1"></i>
+                                <i class="bi bi-star" data-rating="2"></i>
+                                <i class="bi bi-star" data-rating="3"></i>
+                                <i class="bi bi-star" data-rating="4"></i>
+                                <i class="bi bi-star" data-rating="5"></i>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Комментарий</label>
+                            <textarea class="form-control" rows="4" placeholder="Поделитесь вашим мнением о товаре..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-success">Отправить отзыв</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="logo-icon bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                        <i class="bi bi-flower1 text-white"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0">Плодородие Саратов</h5>
+                </div>
+                <p class="text-light">Свежие фермерские продукты напрямую от производителя. Качество, которое вы можете доверять.</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-vimeo"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Навигация</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Главная</a></li>
+                    <li class="mb-2"><a href="catalog.html" class="text-light text-decoration-none">Каталог</a></li>
+                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">О нас</a></li>
+                    <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Контакты</a></li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Категории</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="catalog.html?category=Овощи" class="text-light text-decoration-none">Овощи</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Фрукты" class="text-light text-decoration-none">Фрукты</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Ягоды" class="text-light text-decoration-none">Ягоды</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Молочные продукты" class="text-light text-decoration-none">Молочные продукты</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Контакты</h6>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-geo-alt text-success me-2"></i>
+                    <span>г. Саратов, ул. Танкистов, 37</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-telephone text-success me-2"></i>
+                    <span>+7 (8452) 123-456</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-envelope text-success me-2"></i>
+                    <span>info@plodorodie-saratov.ru</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock text-success me-2"></i>
+                    <span>Ежедневно 8:00-20:00</span>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="newsletter">
+                    <h6 class="fw-bold mb-2">Рассылка</h6>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Ваш email">
+                        <button class="btn btn-success" type="button">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="bg-light my-4">
+
+        <!-- Copyright -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="mb-0">&copy; 2026 ООО "Плодородие Саратов". Все права защищены.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="payment-methods">
+                    <span class="text-muted me-2">Принимаем к оплате:</span>
+                    <i class="bi bi-credit-card-2-front me-2"></i>
+                    <i class="bi bi-paypal me-2"></i>
+                    <i class="bi bi-cash-coin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/script.js"></script>
+
+<script>
+    // Quantity controls
+    function increaseQuantity() {
+        const input = document.getElementById('quantity');
+        const max = parseInt(input.getAttribute('max'));
+        if (parseInt(input.value) < max) {
+            input.value = parseInt(input.value) + 1;
+        }
+    }
+
+    function decreaseQuantity() {
+        const input = document.getElementById('quantity');
+        if (parseInt(input.value) > 1) {
+            input.value = parseInt(input.value) - 1;
+        }
+    }
+
+    // Image gallery
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainImage = document.getElementById('mainImage');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                // Update main image
+                mainImage.src = this.getAttribute('data-image') || this.src;
+
+                // Update active thumbnail
+                thumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Image zoom
+        mainImage.addEventListener('click', function() {
+            const zoomOverlay = document.getElementById('zoomOverlay');
+            const zoomedImage = document.getElementById('zoomedImage');
+            zoomedImage.src = this.src;
+            zoomOverlay.style.display = 'flex';
+        });
+    });
+
+    function closeZoom() {
+        document.getElementById('zoomOverlay').style.display = 'none';
+    }
+
+    // Review rating
+    document.querySelectorAll('#reviewRating .bi-star').forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            const stars = document.querySelectorAll('#reviewRating .bi-star');
+
+            stars.forEach((s, index) => {
+                if (index < rating) {
+                    s.className = 'bi bi-star-fill text-warning';
+                } else {
+                    s.className = 'bi bi-star';
+                }
+            });
+        });
+    });
+
+    // Close zoom on overlay click
+    document.getElementById('zoomOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeZoom();
+        }
+    });
+
+    // Add to cart function
+    function addToCart() {
+        const quantity = document.getElementById('quantity').value;
+        alert('Товар добавлен в корзину: Свежие органические помидоры x' + quantity);
+        // In a real application, you would send this to your backend
+    }
+</script>
+</body>
+</html>
