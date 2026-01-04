@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свежие фермерские продукты с доставкой | Плодородие Саратов</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.9) 0%, rgba(32, 201, 151, 0.9) 100%), url("static/images/hero-bg.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 5rem 0;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-card .card-title {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .product-card .card-text {
+            color: #6c757d;
+        }
+
+        .price-tag {
+            color: #28a745;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+        }
+
+        .product-image {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none !important;
+        }
+
+        .category-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+
+        .category-card .card-title {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .category-card .card-text {
+            color: #6c757d;
+        }
+
+        .category-image {
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .rating-stars {
+            color: #ffc107;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #28a745;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .discounted-products {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .section-header {
+            color: #2c3e50;
+        }
+
+        .section-subheader {
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header sticky-top">
+    <!-- Top Bar -->
+    <div class="top-bar bg-success text-white py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-telephone me-2"></i>
+                        <span>+7 (8452) 123-456</span>
+                        <i class="bi bi-clock ms-3 me-2"></i>
+                        <span>Ежедневно 8:00-20:00</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex align-items-center justify-content-md-end">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        <span>г. Саратов, ул. Танкистов, 37</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <div class="d-flex align-items-center">
+                    <div class="logo-icon bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                        <i class="bi bi-flower1 text-white"></i>
+                    </div>
+                    <div>
+                        <span class="fw-bold text-success">Плодородие</span>
+                        <small class="d-block text-muted">Саратов</small>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Items -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <i class="bi bi-house me-1"></i>Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalog.html">
+                            <i class="bi bi-grid me-1"></i>Каталог
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            <i class="bi bi-info-circle me-1"></i>О нас
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="bi bi-telephone me-1"></i>Контакты
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- User Menu (Logged in) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                            <div class="user-avatar bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                                <i class="bi bi-person text-white"></i>
+                            </div>
+                            <span>Иван Иванов</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="bi bi-person me-2"></i>Профиль
+                            </a></li>
+                            <li><a class="dropdown-item" href="orders.html">
+                                <i class="bi bi-bag me-2"></i>Мои заказы
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">
+                                <i class="bi bi-box-arrow-right me-2"></i>Выйти
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="cart.html">
+                            <i class="bi bi-cart3"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                3
+            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Search -->
+                <form class="d-flex ms-3" action="catalog.html" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Поиск товаров..." name="search">
+                        <button class="btn btn-success" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-50 py-5">
+            <div class="col-lg-6">
+                <div class="hero-content text-white">
+                    <h1 class="display-4 fw-bold mb-4">
+                        Свежие продукты <span class="text-warning">прямо с полей</span> Саратова
+                    </h1>
+                    <p class="lead mb-4">
+                        Натуральные фермерские продукты без химии и консервантов.
+                        Доставляем свежесть прямо к вашему столу!
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="catalog.html" class="btn btn-warning btn-lg px-4 py-3">
+                            <i class="bi bi-cart-plus me-2"></i>Перейти к покупкам
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="bi bi-info-circle me-2"></i>Узнать больше
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="row mt-5 pt-4">
+                        <div class="col-4 text-center">
+                            <h3 class="fw-bold text-warning counter" data-target="500">0</h3>
+                            <small>Довольных клиентов</small>
+                        </div>
+                        <div class="col-4 text-center">
+                            <h3 class="fw-bold text-warning counter" data-target="50">0</h3>
+                            <small>Видов продукции</small>
+                        </div>
+                        <div class="col-4 text-center">
+                            <h3 class="fw-bold text-warning">24ч</h3>
+                            <small>Доставка</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="hero-image">
+                    <img src="static/images/hero-vegetables.png"
+                         alt="Fresh Vegetables"
+                         class="img-fluid"
+                         style="max-height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-success mb-3">Почему выбирают нас</span>
+            <h2 class="display-5 fw-bold section-header">Фермерское качество <span class="text-success">в каждой детали</span></h2>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card border-0 text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h5 class="fw-bold">100% Натурально</h5>
+                        <p class="text-muted">Все продукты выращены без химических удобрений и пестицидов</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                        <h5 class="fw-bold">Быстрая доставка</h5>
+                        <p class="text-muted">Доставляем заказы в течение 24 часов после сбора урожая</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <h5 class="fw-bold">Гарантия качества</h5>
+                        <p class="text-muted">Строгий контроль на всех этапах производства и доставки</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-currency-exchange"></i>
+                        </div>
+                        <h5 class="fw-bold">Лучшие цены</h5>
+                        <p class="text-muted">Прямые поставки от производителя без посредников</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Products -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <span class="badge bg-success mb-2">Популярное</span>
+                <h2 class="fw-bold section-header">Популярные товары</h2>
+                <p class="text-muted section-subheader">Самые востребованные продукты наших покупателей</p>
+            </div>
+            <a href="catalog.html" class="btn btn-outline-success btn-lg">
+                Смотреть все <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+
+        <div class="row g-4" id="popularProducts">
+            <!-- Products will be loaded by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-success mb-3">Категории</span>
+            <h2 class="display-5 fw-bold section-header">Наши <span class="text-success">категории</span> продукции</h2>
+            <p class="text-muted section-subheader">Широкий ассортимент свежих фермерских продуктов</p>
+        </div>
+
+        <div class="row g-4" id="categoriesGrid">
+            <!-- Categories will be loaded by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- New Arrivals -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <span class="badge bg-warning mb-2">Новинки</span>
+                <h2 class="fw-bold section-header">Новые поступления</h2>
+                <p class="text-muted section-subheader">Самые свежие продукты с наших полей</p>
+            </div>
+        </div>
+
+        <div class="row g-4" id="newProducts">
+            <!-- New products will be loaded by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- Special Offers -->
+<section class="py-5 discounted-products">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-danger mb-3">Акция</span>
+            <h2 class="display-5 fw-bold section-header">Специальные <span class="text-danger">предложения</span></h2>
+            <p class="text-muted section-subheader">Товары со скидкой до 20%</p>
+        </div>
+
+        <div class="row g-4" id="discountedProducts">
+            <!-- Discounted products will be loaded by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="static/images/about-farm.jpg"
+                     alt="Наша ферма"
+                     class="img-fluid rounded-3 shadow">
+            </div>
+            <div class="col-lg-6">
+                <span class="badge bg-success mb-3">О компании</span>
+                <h2 class="display-6 fw-bold mb-4 section-header">
+                    <span class="text-success">Плодородие Саратов</span> - качество, проверенное временем
+                </h2>
+                <p class="lead mb-4 text-muted">
+                    Мы - сельскохозяйственное предприятие с многолетним опытом работы
+                    в Саратовской области. Наши поля расположены в экологически чистых
+                    районах, что позволяет нам выращивать продукты высочайшего качества.
+                </p>
+
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold mb-0 section-header">15+ лет</h6>
+                                <small class="text-muted">На рынке</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold mb-0 section-header">500+ га</h6>
+                                <small class="text-muted">Собственные поля</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold mb-0 section-header">100%</h6>
+                                <small class="text-muted">Натурально</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold mb-0 section-header">24/7</h6>
+                                <small class="text-muted">Поддержка</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="about.html" class="btn btn-success btn-lg">
+                    Узнать больше о нас <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-success mb-3">Отзывы</span>
+            <h2 class="display-5 fw-bold section-header">Что говорят <span class="text-success">наши клиенты</span></h2>
+        </div>
+
+        <div class="row g-4" id="testimonials">
+            <!-- Testimonials will be loaded by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-light border-top border-success">
+    <div class="container">
+        <div class="row align-items-center text-center text-lg-start">
+            <div class="col-lg-8">
+                <h3 class="display-6 fw-bold mb-3 section-header">Готовы попробовать наши продукты?</h3>
+                <p class="lead mb-0 text-muted">
+                    Присоединяйтесь к тысячам довольных клиентов и закажите свежие фермерские продукты прямо сейчас!
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="catalog.html" class="btn btn-warning btn-lg px-5 py-3">
+                    <i class="bi bi-cart-plus me-2"></i>Начать покупки
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="logo-icon bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                        <i class="bi bi-flower1 text-white"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0">Плодородие Саратов</h5>
+                </div>
+                <p class="text-light">Свежие фермерские продукты напрямую от производителя. Качество, которое вы можете доверять.</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-vimeo"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Навигация</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Главная</a></li>
+                    <li class="mb-2"><a href="catalog.html" class="text-light text-decoration-none">Каталог</a></li>
+                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">О нас</a></li>
+                    <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Контакты</a></li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Категории</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="catalog.html?category=Овощи" class="text-light text-decoration-none">Овощи</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Фрукты" class="text-light text-decoration-none">Фрукты</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Ягоды" class="text-light text-decoration-none">Ягоды</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Молочные продукты" class="text-light text-decoration-none">Молочные продукты</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Контакты</h6>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-geo-alt text-success me-2"></i>
+                    <span>г. Саратов, ул. Танкистов, 37</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-telephone text-success me-2"></i>
+                    <span>+7 (8452) 123-456</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-envelope text-success me-2"></i>
+                    <span>info@plodorodie-saratov.ru</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock text-success me-2"></i>
+                    <span>Ежедневно 8:00-20:00</span>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="newsletter">
+                    <h6 class="fw-bold mb-2">Рассылка</h6>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Ваш email">
+                        <button class="btn btn-success" type="button">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="bg-light my-4">
+
+        <!-- Copyright -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="mb-0">&copy; 2026 ООО "Плодородие Саратов". Все права защищены.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="payment-methods">
+                    <span class="text-muted me-2">Принимаем к оплате:</span>
+                    <i class="bi bi-credit-card-2-front me-2"></i>
+                    <i class="bi bi-paypal me-2"></i>
+                    <i class="bi bi-cash-coin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="static/js/script.js"></script>
+
+<script>
+    // Данные для главной страницы
+    const popularProducts = [
+        { id: 1, name: 'Помидоры домашние', price: 299, available: 25, image: 'static/images/products/tomatoes.jpg', description: 'Свежие помидоры с грядки' },
+        { id: 2, name: 'Огурцы грунтовые', price: 151, available: 18, image: 'static/images/products/cucumbers.jpg', description: 'Сочные огурцы с открытого грунта' },
+        { id: 3, name: 'Яблоки антоновка', price: 399, available: 15, image: 'static/images/products/apples.jpg', description: 'Ароматные яблоки для пирогов' },
+        { id: 4, name: 'Клубника садовая', price: 599, available: 8, image: 'static/images/products/strawberries.jpg', description: 'Сладкая свежая клубника' }
+    ];
+
+    const categories = [
+        { name: 'Овощи', icon: 'carrot', count: '25+ видов', image: 'static/images/categories/vegetables.jpg', link: 'catalog.html?category=vegetables' },
+        { name: 'Фрукты', icon: 'apple', count: '15+ видов', image: 'static/images/categories/fruits.jpg', link: 'catalog.html?category=fruits' },
+        { name: 'Ягоды', icon: 'strawberry', count: '10+ видов', image: 'static/images/categories/berries.jpg', link: 'catalog.html?category=berries' },
+        { name: 'Зелень', icon: 'flower2', count: '8+ видов', image: 'static/images/categories/greens.jpg', link: 'catalog.html?category=greens' },
+        { name: 'Молочные продукты', icon: 'cup-straw', count: '12+ видов', image: 'static/images/categories/dairy.jpg', link: 'catalog.html?category=dairy' },
+        { name: 'Яйца', icon: 'egg', count: '3+ вида', image: 'static/images/categories/eggs.jpg', link: 'catalog.html?category=eggs' }
+    ];
+
+    const newProducts = [
+        { id: 7, name: 'Картофель молодой', price: 89, image: 'static/images/products/potatoes.jpg' },
+        { id: 8, name: 'Морковь сладкая', price: 129, image: 'static/images/products/carrots.jpg' },
+        { id: 9, name: 'Лук репчатый', price: 79, image: 'static/images/products/onion.jpg' },
+        { id: 10, name: 'Чеснок домашний', price: 199, image: 'static/images/products/garlic.jpg' },
+        { id: 11, name: 'Свекла столовая', price: 99, image: 'static/images/products/beets.jpg' },
+        { id: 12, name: 'Капуста белокочанная', price: 149, image: 'static/images/products/cabbage.jpg' }
+    ];
+
+    const discountedProducts = [
+        { id: 2, name: 'Огурцы грунтовые', price: 151, originalPrice: 189, discount: 20, image: 'static/images/products/cucumbers.jpg', description: 'Сочные огурцы со скидкой' },
+        { id: 6, name: 'Молоко фермерское', price: 220, originalPrice: 259, discount: 15, image: 'static/images/products/milk.jpg', description: 'Свежее молоко по выгодной цене' },
+        { id: 13, name: 'Сметана домашняя', price: 189, originalPrice: 229, discount: 17, image: 'static/images/products/sour-cream.jpg', description: 'Натуральная сметана' },
+        { id: 14, name: 'Творог фермерский', price: 299, originalPrice: 349, discount: 14, image: 'static/images/products/cottage-cheese.jpg', description: 'Свежий творог высшего сорта' }
+    ];
+
+    const testimonials = [
+        { user: 'Анна Иванова', role: 'Постоянный клиент', rating: 5, comment: 'Покупаю здесь овощи уже больше года. Всегда свежие и вкусные. Особенно нравятся помидоры и огурцы - как с бабушкиного огорода!' },
+        { user: 'Иван Петров', role: 'Клиент 2 года', rating: 4.5, comment: 'Быстрая доставка, качественные продукты. Молоко и творог просто восхитительные! Рекомендую всем, кто ценит натуральные продукты.' },
+        { user: 'Мария Сидорова', role: 'Мама двоих детей', rating: 5, comment: 'Заказываю здесь продукты для всей семьи. Дети обожают ваши ягоды, а я ценю качество и свежесть. Спасибо за вашу работу!' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPopularProducts();
+        loadCategories();
+        loadNewProducts();
+        loadDiscountedProducts();
+        loadTestimonials();
+        initCounters();
+    });
+
+    function loadPopularProducts() {
+        const container = document.getElementById('popularProducts');
+        container.innerHTML = '';
+
+        popularProducts.forEach(product => {
+            const productHTML = `
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card product-card h-100">
+                        <div class="position-relative">
+                            <img src="${product.image}"
+                                 class="card-img-top product-image"
+                                 alt="${product.name}">
+                            <div class="product-badge">
+                                <span class="badge bg-success">Популярный</span>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">${product.name}</h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                ${product.description}
+                            </p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="price-tag">${product.price} ₽</span>
+                                    <small class="text-muted">
+                                        <i class="bi bi-check-circle text-success me-1"></i>
+                                        В наличии: ${product.available} шт.
+                                    </small>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <a href="product.html?id=${product.id}" class="btn btn-outline-success">
+                                        <i class="bi bi-eye me-1"></i>Подробнее
+                                    </a>
+                                    <button type="button" class="btn btn-success w-100 add-to-cart" data-product-id="${product.id}">
+                                        <i class="bi bi-cart-plus me-1"></i>В корзину
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += productHTML;
+        });
+
+        // Добавляем обработчики для кнопок "В корзину"
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                addToCart(productId);
+            });
+        });
+    }
+
+    function loadCategories() {
+        const container = document.getElementById('categoriesGrid');
+        container.innerHTML = '';
+
+        categories.forEach(category => {
+            const categoryHTML = `
+                <div class="col-lg-4 col-md-6">
+                    <a href="${category.link}" class="card category-card text-decoration-none h-100">
+                        <div class="row g-0">
+                            <div class="col-4">
+                                <img src="${category.image}"
+                                     class="category-image w-100 h-100"
+                                     alt="${category.name}"
+                                     style="object-fit: cover;">
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body d-flex flex-column justify-content-center h-100">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-${category.icon} text-success fs-4 me-3"></i>
+                                        <h5 class="card-title mb-0 fw-bold">${category.name}</h5>
+                                    </div>
+                                    <p class="card-text text-muted mb-0">${category.count}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+            container.innerHTML += categoryHTML;
+        });
+    }
+
+    function loadNewProducts() {
+        const container = document.getElementById('newProducts');
+        container.innerHTML = '';
+
+        newProducts.forEach(product => {
+            const productHTML = `
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100">
+                        <div class="position-relative">
+                            <img src="${product.image}"
+                                 class="card-img-top product-image"
+                                 alt="${product.name}"
+                                 style="height: 120px; object-fit: cover;">
+                            <div class="product-badge">
+                                <span class="badge bg-warning">Новинка</span>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h6 class="card-title fw-bold">${product.name}</h6>
+                            <p class="price-tag mb-2">${product.price} ₽</p>
+                            <a href="product.html?id=${product.id}"
+                               class="btn btn-sm btn-outline-success w-100">
+                                Подробнее
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += productHTML;
+        });
+    }
+
+    function loadDiscountedProducts() {
+        const container = document.getElementById('discountedProducts');
+        container.innerHTML = '';
+
+        discountedProducts.forEach(product => {
+            const productHTML = `
+                <div class="col-lg-3 col-md-6">
+                    <div class="card product-card border-danger h-100">
+                        <div class="position-relative">
+                            <img src="${product.image}"
+                                 class="card-img-top product-image"
+                                 alt="${product.name}">
+                            <div class="product-badge">
+                                <span class="badge bg-danger">-${product.discount}%</span>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">${product.name}</h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                ${product.description}
+                            </p>
+                            <div class="mt-auto">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="price-tag me-2">${product.price} ₽</span>
+                                    <span class="original-price text-muted">${product.originalPrice} ₽</span>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <a href="product.html?id=${product.id}"
+                                       class="btn btn-outline-danger">
+                                        Подробнее
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += productHTML;
+        });
+    }
+
+    function loadTestimonials() {
+        const container = document.getElementById('testimonials');
+        container.innerHTML = '';
+
+        testimonials.forEach(testimonial => {
+            const starsHTML = getStarsHTML(testimonial.rating);
+            const testimonialHTML = `
+                <div class="col-md-4">
+                    <div class="card border-0 h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="rating-stars mb-3">
+                                ${starsHTML}
+                            </div>
+                            <p class="card-text mb-3">
+                                "${testimonial.comment}"
+                            </p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="user-avatar bg-success me-3">
+                                    <i class="bi bi-person text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 section-header">${testimonial.user}</h6>
+                                    <small class="text-muted">${testimonial.role}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += testimonialHTML;
+        });
+    }
+
+    function getStarsHTML(rating) {
+        let starsHTML = '';
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+
+        for (let i = 0; i < fullStars; i++) {
+            starsHTML += '<i class="bi bi-star-fill"></i>';
+        }
+
+        if (hasHalfStar) {
+            starsHTML += '<i class="bi bi-star-half"></i>';
+        }
+
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        for (let i = 0; i < emptyStars; i++) {
+            starsHTML += '<i class="bi bi-star"></i>';
+        }
+
+        return starsHTML;
+    }
+
+    function initCounters() {
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const increment = target / 100;
+            let current = 0;
+
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.innerText = Math.ceil(current);
+                    setTimeout(updateCounter, 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            // Запускаем счетчики при прокрутке до них
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(counter);
+        });
+    }
+
+    function addToCart(productId) {
+        // Имитация добавления в корзину
+        const product = [...popularProducts, ...newProducts, ...discountedProducts].find(p => p.id == productId);
+
+        if (product) {
+            showNotification(`"${product.name}" добавлен в корзину`, 'success');
+
+            // Обновление счетчика в header
+            updateCartCount();
+        }
+    }
+
+    function updateCartCount() {
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            let currentCount = parseInt(cartCount.textContent) || 0;
+            currentCount++;
+            cartCount.textContent = currentCount;
+
+            // Анимация
+            cartCount.classList.add('animate__animated', 'animate__bounce');
+            setTimeout(() => {
+                cartCount.classList.remove('animate__animated', 'animate__bounce');
+            }, 1000);
+        }
+    }
+
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+        notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+
+        const icons = {
+            'success': 'bi-check-circle-fill',
+            'danger': 'bi-exclamation-circle-fill',
+            'warning': 'bi-exclamation-triangle-fill',
+            'info': 'bi-info-circle-fill'
+        };
+
+        notification.innerHTML = `
+            <div class="d-flex align-items-center">
+                <i class="bi ${icons[type]} me-2"></i>
+                ${message}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 3000);
+    }
+</script>
+</body>
+</html>

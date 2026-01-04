@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа | Плодородие Саратов</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+    <style>
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e9ecef;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .step.completed .step-number {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #6c757d;
+        }
+
+        .step.active .step-label {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .shipping-method {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .shipping-method:hover,
+        .shipping-method.selected {
+            border-color: #28a745;
+            background-color: rgba(40, 167, 69, 0.05);
+        }
+
+        .payment-method {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: #28a745;
+            background-color: rgba(40, 167, 69, 0.05);
+        }
+
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .order-summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .guarantee-badge {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .form-label {
+            color: #2c3e50 !important;
+            font-weight: 600 !important;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+        .form-select:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header sticky-top">
+    <!-- Top Bar -->
+    <div class="top-bar bg-success text-white py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-telephone me-2"></i>
+                        <span>+7 (8452) 123-456</span>
+                        <i class="bi bi-clock ms-3 me-2"></i>
+                        <span>Ежедневно 8:00-20:00</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex align-items-center justify-content-md-end">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        <span>г. Саратов, ул. Танкистов, 37</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <div class="d-flex align-items-center">
+                    <div class="logo-icon bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                        <i class="bi bi-flower1 text-white"></i>
+                    </div>
+                    <div>
+                        <span class="fw-bold text-success">Плодородие</span>
+                        <small class="d-block text-muted">Саратов</small>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Items -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-house me-1"></i>Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalog.html">
+                            <i class="bi bi-grid me-1"></i>Каталог
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            <i class="bi bi-info-circle me-1"></i>О нас
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="bi bi-telephone me-1"></i>Контакты
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- User Menu (Logged in) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                            <div class="user-avatar bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                                <i class="bi bi-person text-white"></i>
+                            </div>
+                            <span>Иван Иванов</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="bi bi-person me-2"></i>Профиль
+                            </a></li>
+                            <li><a class="dropdown-item" href="orders.html">
+                                <i class="bi bi-bag me-2"></i>Мои заказы
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">
+                                <i class="bi bi-box-arrow-right me-2"></i>Выйти
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="cart.html">
+                            <i class="bi bi-cart3"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                3
+            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Search -->
+                <form class="d-flex ms-3" action="catalog.html" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Поиск товаров..." name="search">
+                        <button class="btn btn-success" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Page Header -->
+<section class="page-header bg-light py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="cart.html" class="text-decoration-none">Корзина</a></li>
+                        <li class="breadcrumb-item active">Оформление заказа</li>
+                    </ol>
+                </nav>
+                <h1 class="h2 fw-bold mt-2">Оформление заказа</h1>
+                <p class="text-muted mb-0">Завершите ваш заказ в несколько шагов</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <span class="h4 fw-bold text-success" id="checkoutTotal">1,148 ₽</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Checkout Steps -->
+<section class="py-4">
+    <div class="container">
+        <div class="checkout-steps">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div class="step-label">Доставка</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-label">Оплата</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-label">Подтверждение</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Checkout Form -->
+<section class="py-5">
+    <div class="container">
+        <form method="POST" id="checkoutForm" onsubmit="return submitOrder(event)">
+            <div class="row">
+                <!-- Left Column - Form -->
+                <div class="col-lg-8">
+                    <!-- Contact Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="bi bi-person me-2"></i>Контактная информация
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">ФИО *</label>
+                                    <input type="text" class="form-control" id="name" name="name" required
+                                           placeholder="Иванов Иван Иванович">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Телефон *</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required
+                                           placeholder="+7 (999) 999-99-99">
+                                </div>
+                                <div class="col-12">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           placeholder="your@email.com">
+                                    <div class="form-text">На этот email придет подтверждение заказа</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="bi bi-geo-alt me-2"></i>Адрес доставки
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Полный адрес *</label>
+                                <textarea class="form-control" id="address" name="address" rows="3" required
+                                          placeholder="г. Саратов, ул. Примерная, д. 1, кв. 1"></textarea>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="delivery_date" class="form-label">Желаемая дата доставки</label>
+                                    <input type="date" class="form-control" id="delivery_date" name="delivery_date">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="delivery_time" class="form-label">Временной интервал</label>
+                                    <select class="form-select" id="delivery_time" name="delivery_time">
+                                        <option value="9:00-13:00">9:00 - 13:00</option>
+                                        <option value="13:00-17:00">13:00 - 17:00</option>
+                                        <option value="17:00-21:00">17:00 - 21:00</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Method -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="bi bi-truck me-2"></i>Способ доставки
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="shipping-method selected" onclick="selectShipping('courier')">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="shipping_method"
+                                           id="courier" value="courier" checked>
+                                    <label class="form-check-label fw-bold" for="courier">
+                                        Курьерская доставка
+                                    </label>
+                                </div>
+                                <div class="ms-4 mt-2">
+                                    <p class="text-muted mb-1">Доставка курьером по адресу</p>
+                                    <p class="text-success mb-0">
+                                        <i class="bi bi-clock me-1"></i>Завтра, бесплатно
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="shipping-method" onclick="selectShipping('pickup')">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="shipping_method"
+                                           id="pickup" value="pickup">
+                                    <label class="form-check-label fw-bold" for="pickup">
+                                        Самовывоз
+                                    </label>
+                                </div>
+                                <div class="ms-4 mt-2">
+                                    <p class="text-muted mb-1">г. Саратов, ул. Танкистов, 37</p>
+                                    <p class="text-success mb-0">
+                                        <i class="bi bi-clock me-1"></i>Сегодня, бесплатно
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="bi bi-credit-card me-2"></i>Способ оплаты
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="payment-method selected" onclick="selectPayment('cash')">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method"
+                                           id="cash" value="cash" checked>
+                                    <label class="form-check-label fw-bold" for="cash">
+                                        <i class="bi bi-wallet2 me-2"></i>Наличными при получении
+                                    </label>
+                                </div>
+                                <p class="text-muted mb-0 ms-4">Оплата наличными курьеру при доставке</p>
+                            </div>
+
+                            <div class="payment-method" onclick="selectPayment('card')">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method"
+                                           id="card" value="card">
+                                    <label class="form-check-label fw-bold" for="card">
+                                        <i class="bi bi-credit-card-2-front me-2"></i>Банковской картой онлайн
+                                    </label>
+                                </div>
+                                <p class="text-muted mb-0 ms-4">Оплата картой Visa, Mastercard, Мир</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="bi bi-chat-dots me-2"></i>Комментарий к заказу
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                                <textarea class="form-control" id="comments" name="comments" rows="4"
+                                          placeholder="Укажите дополнительные пожелания по доставке..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Order Summary -->
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top: 120px;">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="bi bi-bag-check me-2"></i>Ваш заказ</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Products List -->
+                            <div class="mb-3" id="checkoutOrderItems">
+                                <!-- Items will be populated by JavaScript -->
+                            </div>
+
+                            <hr>
+
+                            <!-- Totals -->
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Товары</span>
+                                    <span id="checkoutSubtotal">1,148 ₽</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Доставка</span>
+                                    <span class="text-success" id="checkoutShipping">Бесплатно</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Скидка</span>
+                                    <span class="text-danger" id="checkoutDiscount">-0 ₽</span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- Final Total -->
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <strong class="h5">Итого</strong>
+                                <strong class="h4 text-success" id="checkoutFinalTotal">1,148 ₽</strong>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-success btn-lg w-100 py-3 mb-3">
+                                <i class="bi bi-lock me-2"></i>Оформить заказ
+                            </button>
+
+                            <!-- Terms Agreement -->
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                <label class="form-check-label small" for="agreeTerms">
+                                    Я согласен с <a href="#" class="text-decoration-none">условиями обработки персональных данных</a> и <a href="#" class="text-decoration-none">правилами возврата</a>
+                                </label>
+                            </div>
+
+                            <!-- Security Info -->
+                            <div class="text-center">
+                                <small class="text-muted">
+                                    <i class="bi bi-shield-check text-success me-1"></i>
+                                    Ваши данные защищены
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guarantees -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">Наши гарантии</h6>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+                                <div>
+                                    <small class="fw-bold">Свежесть продуктов</small>
+                                    <br>
+                                    <small class="text-muted">Доставка в день заказа</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+                                <div>
+                                    <small class="fw-bold">Качество</small>
+                                    <br>
+                                    <small class="text-muted">Натуральные фермерские продукты</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+                                <div>
+                                    <small class="fw-bold">Поддержка 24/7</small>
+                                    <br>
+                                    <small class="text-muted">Поможем с любыми вопросами</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Support -->
+                    <div class="card mt-4">
+                        <div class="card-body text-center">
+                            <h6 class="fw-bold mb-3">Нужна помощь?</h6>
+                            <p class="text-muted small mb-3">Наши операторы всегда готовы помочь</p>
+                            <a href="tel:+78452123456" class="btn btn-outline-success w-100 mb-2">
+                                <i class="bi bi-telephone me-2"></i>+7 (8452) 123-456
+                            </a>
+                            <a href="https://t.me/plodorodie_saratov" class="btn btn-outline-primary w-100">
+                                <i class="bi bi-telegram me-2"></i>Telegram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="logo-icon bg-success rounded-circle d-flex align-items-center justify-content-center me-2">
+                        <i class="bi bi-flower1 text-white"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0">Плодородие Саратов</h5>
+                </div>
+                <p class="text-light">Свежие фермерские продукты напрямую от производителя. Качество, которое вы можете доверять.</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-vimeo"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Навигация</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Главная</a></li>
+                    <li class="mb-2"><a href="catalog.html" class="text-light text-decoration-none">Каталог</a></li>
+                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">О нас</a></li>
+                    <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Контакты</a></li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Категории</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="catalog.html?category=Овощи" class="text-light text-decoration-none">Овощи</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Фрукты" class="text-light text-decoration-none">Фрукты</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Ягоды" class="text-light text-decoration-none">Ягоды</a></li>
+                    <li class="mb-2"><a href="catalog.html?category=Молочные продукты" class="text-light text-decoration-none">Молочные продукты</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Контакты</h6>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-geo-alt text-success me-2"></i>
+                    <span>г. Саратов, ул. Танкистов, 37</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-telephone text-success me-2"></i>
+                    <span>+7 (8452) 123-456</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-envelope text-success me-2"></i>
+                    <span>info@plodorodie-saratov.ru</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock text-success me-2"></i>
+                    <span>Ежедневно 8:00-20:00</span>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="newsletter">
+                    <h6 class="fw-bold mb-2">Рассылка</h6>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Ваш email">
+                        <button class="btn btn-success" type="button">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="bg-light my-4">
+
+        <!-- Copyright -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="mb-0">&copy; 2026 ООО "Плодородие Саратов". Все права защищены.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="payment-methods">
+                    <span class="text-muted me-2">Принимаем к оплате:</span>
+                    <i class="bi bi-credit-card-2-front me-2"></i>
+                    <i class="bi bi-paypal me-2"></i>
+                    <i class="bi bi-cash-coin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="static/js/script.js"></script>
+
+<script>
+    // Данные заказа (в реальном приложении это будет из корзины)
+    const orderItems = [
+        { id: 1, name: 'Помидоры домашние', price: 299, quantity: 2 },
+        { id: 2, name: 'Огурцы грунтовые', price: 151, quantity: 1 },
+        { id: 3, name: 'Яблоки антоновка', price: 399, quantity: 1 }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        updateOrderSummary();
+        setupCheckoutForm();
+        setDefaultDeliveryDate();
+    });
+
+    function updateOrderSummary() {
+        const subtotal = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = 0; // Бесплатная доставка
+        const discount = 0;
+        const total = subtotal + shipping - discount;
+
+        // Обновление итогов
+        document.getElementById('checkoutTotal').textContent = `${total.toLocaleString()} ₽`;
+        document.getElementById('checkoutSubtotal').textContent = `${subtotal.toLocaleString()} ₽`;
+        document.getElementById('checkoutFinalTotal').textContent = `${total.toLocaleString()} ₽`;
+
+        // Обновление элементов заказа
+        const container = document.getElementById('checkoutOrderItems');
+        container.innerHTML = '';
+
+        orderItems.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            const itemElement = document.createElement('div');
+            itemElement.className = 'order-summary-item';
+            itemElement.innerHTML = `
+                <div class="flex-grow-1">
+                    <h6 class="fw-bold mb-1">${item.name}</h6>
+                    <small class="text-muted">${item.quantity} × ${item.price} ₽</small>
+                </div>
+                <span class="fw-bold">${itemTotal} ₽</span>
+            `;
+            container.appendChild(itemElement);
+        });
+    }
+
+    function setupCheckoutForm() {
+        // Форматирование телефона
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+            e.target.value = '+7' + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+        });
+
+        // Выбор способа доставки
+        document.querySelectorAll('.shipping-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.shipping-method').forEach(m => m.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Выбор способа оплаты
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    }
+
+    function setDefaultDeliveryDate() {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        // Форматирование даты в YYYY-MM-DD
+        const formattedDate = tomorrow.toISOString().split('T')[0];
+        document.getElementById('delivery_date').value = formattedDate;
+        document.getElementById('delivery_date').min = formattedDate;
+    }
+
+    function selectShipping(method) {
+        document.querySelectorAll('.shipping-method').forEach(el => {
+            el.classList.remove('selected');
+        });
+        document.querySelector(`[value="${method}"]`).closest('.shipping-method').classList.add('selected');
+        document.getElementById(method).checked = true;
+    }
+
+    function selectPayment(method) {
+        document.querySelectorAll('.payment-method').forEach(el => {
+            el.classList.remove('selected');
+        });
+        document.querySelector(`[value="${method}"]`).closest('.payment-method').classList.add('selected');
+        document.getElementById(method).checked = true;
+    }
+
+    function submitOrder(event) {
+        event.preventDefault();
+
+        // Проверка согласия с условиями
+        const agreeTerms = document.getElementById('agreeTerms');
+        if (!agreeTerms.checked) {
+            alert('Пожалуйста, согласитесь с условиями обработки персональных данных');
+            agreeTerms.focus();
+            return false;
+        }
+
+        // Проверка заполнения обязательных полей
+        const requiredFields = ['name', 'phone', 'address'];
+        let isValid = true;
+
+        requiredFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('is-invalid');
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+
+        if (!isValid) {
+            alert('Пожалуйста, заполните все обязательные поля');
+            return false;
+        }
+
+        // Сбор данных формы
+        const orderData = {
+            customer: {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                deliveryDate: document.getElementById('delivery_date').value,
+                deliveryTime: document.getElementById('delivery_time').value,
+                shippingMethod: document.querySelector('input[name="shipping_method"]:checked').value,
+                paymentMethod: document.querySelector('input[name="payment_method"]:checked').value,
+                comments: document.getElementById('comments').value
+            },
+            items: orderItems,
+            total: orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+        };
+
+        // Сохранение заказа в localStorage (имитация)
+        localStorage.setItem('lastOrder', JSON.stringify(orderData));
+
+        // Генерация номера заказа
+        const orderNumber = 'ORD-' + Date.now().toString().slice(-8);
+
+        // Перенаправление на страницу успеха
+        window.location.href = `order_success.html?order=${orderNumber}`;
+
+        return false; // Для демонстрации
+    }
+</script>
+</body>
+</html>
